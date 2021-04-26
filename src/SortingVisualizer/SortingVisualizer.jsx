@@ -2,6 +2,7 @@ import React from "react";
 import { getMergeSortAnimations } from "../sortingAlgorithms/mergeSortAlgorithm.js";
 import { getBubbleSortAnimations } from "../sortingAlgorithms/bubbleSortAlgorithm.js";
 import { getInsertionSortAnimations } from "../sortingAlgorithms/insertionSortAlgorithm.js";
+import { getQuickSortAnimations } from "../sortingAlgorithms/quickSortAlgorithm.js";
 import "./SortingVisualizer.css";
 
 // Change this value for the speed of the animations.
@@ -63,8 +64,36 @@ export default class SortingVisualizer extends React.Component {
   }
 
   quickSort() {
-    this.mergeSort();
-    // We leave it as an exercise to the viewer of this code to implement this method.
+    console.log("Inside Quick Sort");
+    const animations = getQuickSortAnimations(this.state.array);
+    var cnt = 0;
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName("array-bar");
+      const isColorChange = Boolean(animations[i].length === 2);
+      if (isColorChange) {
+        cnt++;
+        console.log("2 wali condiition");
+        const [barOneIdx, barTwoIdx] = animations[i];
+        const barOneStyle = arrayBars[barOneIdx].style;
+        const barTwoStyle = arrayBars[barTwoIdx].style;
+        const color = cnt % 2 === 1 ? SECONDARY_COLOR : PRIMARY_COLOR;
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+          barTwoStyle.backgroundColor = color;
+        }, i * ANIMATION_SPEED_MS);
+      } else {
+        setTimeout(() => {
+          const [barOneIdx, newHeightOne, barTwoIdx, newHeightTwo] = animations[
+            i
+          ];
+          console.log("4 wali condiition");
+          const barOneStyle = arrayBars[barOneIdx].style;
+          barOneStyle.height = `${newHeightOne}px`;
+          const barTwoStyle = arrayBars[barTwoIdx].style;
+          barTwoStyle.height = `${newHeightTwo}px`;
+        }, i * ANIMATION_SPEED_MS);
+      }
+    }
   }
 
   heapSort() {
