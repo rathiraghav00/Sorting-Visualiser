@@ -1,12 +1,13 @@
 import React from "react";
-import { getMergeSortAnimations } from "../sortingAlgorithms/sortingAlgorithms.js";
+import { getMergeSortAnimations } from "../sortingAlgorithms/mergeSortAlgorithm.js";
+import { getBubbleSortAnimations } from "../sortingAlgorithms/bubbleSortAlgorithm.js";
 import "./SortingVisualizer.css";
 
 // Change this value for the speed of the animations.
-const ANIMATION_SPEED_MS = 3;
+const ANIMATION_SPEED_MS = 5;
 
 // Change this value for the number of bars (value) in the array.
-const NUMBER_OF_ARRAY_BARS = 50;
+const NUMBER_OF_ARRAY_BARS = 15;
 
 // This is the main color of the array bars.
 const PRIMARY_COLOR = "turquoise";
@@ -71,16 +72,36 @@ export default class SortingVisualizer extends React.Component {
   }
 
   bubbleSort() {
-    this.mergeSort();
-
+    console.log("Inside Bubble Sort");
+    const animations = getBubbleSortAnimations(this.state.array);
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName("array-bar");
+      const isColorChange = i % 3 !== 2;
+      if (isColorChange) {
+        const [barOneIdx, barTwoIdx] = animations[i];
+        const barOneStyle = arrayBars[barOneIdx].style;
+        const barTwoStyle = arrayBars[barTwoIdx].style;
+        const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+          barTwoStyle.backgroundColor = color;
+        }, i * ANIMATION_SPEED_MS);
+      } else {
+        setTimeout(() => {
+          const [barOneIdx, newHeightOne, barTwoIdx, newHeightTwo] = animations[
+            i
+          ];
+          const barOneStyle = arrayBars[barOneIdx].style;
+          barOneStyle.height = `${newHeightOne}px`;
+          const barTwoStyle = arrayBars[barTwoIdx].style;
+          barTwoStyle.height = `${newHeightTwo}px`;
+        }, i * ANIMATION_SPEED_MS);
+      }
+    }
     // We leave it as an exercise to the viewer of this code to implement this method.
   }
 
-  insertionSort() {
-    this.mergeSort();
-
-    // We leave it as an exercise to the viewer of this code to implement this method.
-  }
+  insertionSort() {}
 
   selectionSort() {
     this.mergeSort();
@@ -119,14 +140,4 @@ export default class SortingVisualizer extends React.Component {
 function randomIntFromInterval(min, max) {
   // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-function arraysAreEqual(arrayOne, arrayTwo) {
-  if (arrayOne.length !== arrayTwo.length) return false;
-  for (let i = 0; i < arrayOne.length; i++) {
-    if (arrayOne[i] !== arrayTwo[i]) {
-      return false;
-    }
-  }
-  return true;
 }
