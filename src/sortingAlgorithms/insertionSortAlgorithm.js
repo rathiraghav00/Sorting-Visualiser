@@ -41,6 +41,10 @@ function InsertionSortHelper(arr, animations) {
       animations.push([j + 1, arr[j], j + 1, arr[j]]);
       arr[j + 1] = arr[j];
       j = j - 1;
+      if (j >= 0) {
+        animations.push([i, j]);
+        animations.push([i, j]);
+      }
     }
     animations.push([j + 1, key, j + 1, key]);
     arr[j + 1] = key;
