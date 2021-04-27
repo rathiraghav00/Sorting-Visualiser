@@ -7,7 +7,7 @@ function Footer() {
     <div>
       <p
         style={{
-          position: "absolute",
+          // position: "absolute",
           bottom: "0px",
           left: "0px",
           right: "0px",
