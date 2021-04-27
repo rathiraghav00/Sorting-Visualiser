@@ -7,10 +7,10 @@ import { getSelectionSortAnimations } from "../sortingAlgorithms/selectionSortAl
 import "./SortingVisualizer.css";
 
 // Change this value for the speed of the animations.
-const ANIMATION_SPEED_MS = 1;
+const ANIMATION_SPEED_MS = 5;
 
 // Change this value for the number of bars (value) in the array.
-const NUMBER_OF_ARRAY_BARS = 300;
+const NUMBER_OF_ARRAY_BARS = 100;
 
 // This is the main color of the array bars.
 const PRIMARY_COLOR = "turquoise";
@@ -18,31 +18,46 @@ const PRIMARY_COLOR = "turquoise";
 // This is the color of array bars that are being compared throughout the animations.
 const SECONDARY_COLOR = "red";
 
+var dict = {
+  generate: 1,
+  merge: 2,
+  quick: 3,
+  bubble: 4,
+  insertion: 5,
+  selection: 6,
+  reset: 7,
+};
+
 export default class SortingVisualizer extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       array: [],
-      buttonClicked: false,
+      buttonClicked: 0,
     };
+
+    // this.timer = this.timer.bind(this);
   }
 
   componentDidMount() {
     this.resetArray();
-    this.setState({ buttonClicked: false });
+    this.setState({ buttonClicked: 0 });
   }
 
   resetArray() {
+    if (this.state.buttonClicked !== 0) return;
+    this.setState({ buttonClicked: 1 });
     const arr = [];
     for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
       arr.push(randomIntFromInterval(5, 730));
     }
     this.setState({ array: arr });
+    this.setState({ buttonClicked: 0 });
   }
 
-  processAlgorithm(animations) {
-    this.setState({ buttonClicked: true });
+  processAlgorithm(animations, id) {
+    this.setState({ buttonClicked: id });
     console.log("SET TO TRUE");
     var tim = 0;
     var cnt = 0;
@@ -73,48 +88,47 @@ export default class SortingVisualizer extends React.Component {
         }, i * ANIMATION_SPEED_MS);
       }
     }
-
-    tim += 2000;
     setTimeout(() => {
-      this.setState({ buttonClicked: false });
+      this.setState({ buttonClicked: 0 });
       console.log("SET TO FALSE");
     }, tim);
   }
 
   mergeSort() {
-    if (this.state.buttonClicked === true) return;
+    if (this.state.buttonClicked !== 0) return;
     // console.log("Inside Merge Sort");
     const animations = getMergeSortAnimations(this.state.array);
-    this.processAlgorithm(animations);
+    this.processAlgorithm(animations, dict["merge"]);
   }
 
   quickSort() {
-    // console.log("Inside Quick Sort");
-    console.log(this.state.buttonClicked, "Inside Quick Sort");
-    if (this.state.buttonClicked === true) return;
-    console.log(this.state.buttonClicked, "Running Quick Sort");
+    if (this.state.buttonClicked !== 0) return;
     const animations = getQuickSortAnimations(this.state.array);
-    this.processAlgorithm(animations);
+    this.processAlgorithm(animations, dict["quick"]);
   }
 
   bubbleSort() {
     // console.log("Inside Bubble Sort");
-    if (this.state.buttonClicked === true) return;
+    if (this.state.buttonClicked !== 0) return;
     const animations = getBubbleSortAnimations(this.state.array);
-    this.processAlgorithm(animations);
+    this.processAlgorithm(animations, dict["bubble"]);
   }
 
   insertionSort() {
     // console.log("Inside Insertion Sort");
-    if (this.state.buttonClicked === true) return;
+    if (this.state.buttonClicked !== 0) return;
     const animations = getInsertionSortAnimations(this.state.array);
-    this.processAlgorithm(animations);
+    this.processAlgorithm(animations, dict["insertion"]);
   }
 
   selectionSort() {
-    if (this.state.buttonClicked === true) return;
+    if (this.state.buttonClicked !== 0) return;
     const animations = getSelectionSortAnimations(this.state.array);
-    this.processAlgorithm(animations);
+    this.processAlgorithm(animations, dict["selection"]);
+  }
+
+  bruteReset() {
+    window.location.reload();
   }
 
   render() {
@@ -127,6 +141,11 @@ export default class SortingVisualizer extends React.Component {
             <button
               type="submit"
               style={{
+                opacity:
+                  this.state.buttonClicked === 0 ||
+                  this.state.buttonClicked === dict["generate"]
+                    ? 1
+                    : 0.5,
                 color: "black",
               }}
               className="form-control btn btn-link col-md-1"
@@ -137,6 +156,11 @@ export default class SortingVisualizer extends React.Component {
             <button
               type="submit"
               style={{
+                opacity:
+                  this.state.buttonClicked === 0 ||
+                  this.state.buttonClicked === dict["merge"]
+                    ? 1
+                    : 0.5,
                 color: "black",
               }}
               className="form-control btn btn-link  col-md-1"
@@ -147,6 +171,11 @@ export default class SortingVisualizer extends React.Component {
             <button
               type="submit"
               style={{
+                opacity:
+                  this.state.buttonClicked === 0 ||
+                  this.state.buttonClicked === dict["quick"]
+                    ? 1
+                    : 0.5,
                 color: "black",
               }}
               className="form-control btn btn-link  col-md-1"
@@ -157,6 +186,11 @@ export default class SortingVisualizer extends React.Component {
             <button
               type="submit"
               style={{
+                opacity:
+                  this.state.buttonClicked === 0 ||
+                  this.state.buttonClicked === dict["bubble"]
+                    ? 1
+                    : 0.5,
                 color: "black",
               }}
               className="form-control btn btn-link  col-md-1"
@@ -167,6 +201,11 @@ export default class SortingVisualizer extends React.Component {
             <button
               type="submit"
               style={{
+                opacity:
+                  this.state.buttonClicked === 0 ||
+                  this.state.buttonClicked === dict["insertion"]
+                    ? 1
+                    : 0.5,
                 color: "black",
               }}
               className="form-control btn btn-link  col-md-1"
@@ -177,6 +216,11 @@ export default class SortingVisualizer extends React.Component {
             <button
               type="submit"
               style={{
+                opacity:
+                  this.state.buttonClicked === 0 ||
+                  this.state.buttonClicked === dict["selection"]
+                    ? 1
+                    : 0.5,
                 color: "black",
               }}
               className="form-control btn btn-link  col-md-1"
@@ -190,7 +234,7 @@ export default class SortingVisualizer extends React.Component {
                 color: "red",
               }}
               className="form-control btn btn-link  col-md-1"
-              onClick={() => window.location.reload()}
+              onClick={() => this.bruteReset()}
             >
               Reset
             </button>
