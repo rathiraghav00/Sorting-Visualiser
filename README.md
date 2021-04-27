@@ -1,4 +1,6 @@
-Sorting Visualiser :
+Sorting Visualiser : Responsive website to visualise sorting algorithms 
+
+![alt text](./screenshot/1.png)
 
 * Tech Stack : React, Javascript, HTML, CSS and Bootstrap
 * Responsive website to visualise sorting algorithms like Merge Sort, Insertion Sort, Bubble Sort, Selection Sort and Quick Sort
