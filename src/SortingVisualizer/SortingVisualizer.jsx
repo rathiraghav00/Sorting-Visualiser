@@ -57,7 +57,7 @@ export default class SortingVisualizer extends React.Component {
   }
 
   processAlgorithm(animations, id) {
-    ANIMATION_SPEED_MS = 15000 / (animations.length + 1);
+    ANIMATION_SPEED_MS = 10000 / (animations.length + 1);
 
     this.setState({ buttonClicked: id });
     console.log("SET TO TRUE");
