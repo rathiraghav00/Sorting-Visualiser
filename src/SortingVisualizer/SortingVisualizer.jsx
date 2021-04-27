@@ -7,10 +7,10 @@ import { getSelectionSortAnimations } from "../sortingAlgorithms/selectionSortAl
 import "./SortingVisualizer.css";
 
 // Change this value for the speed of the animations.
-const ANIMATION_SPEED_MS = 5;
+const ANIMATION_SPEED_MS = 2;
 
 // Change this value for the number of bars (value) in the array.
-const NUMBER_OF_ARRAY_BARS = 100;
+const NUMBER_OF_ARRAY_BARS = 310;
 
 // This is the main color of the array bars.
 const PRIMARY_COLOR = "turquoise";
@@ -96,34 +96,33 @@ export default class SortingVisualizer extends React.Component {
 
   mergeSort() {
     if (this.state.buttonClicked !== 0) return;
-    // console.log("Inside Merge Sort");
-    const animations = getMergeSortAnimations(this.state.array);
+    const animations = getMergeSortAnimations([...this.state.array]);
     this.processAlgorithm(animations, dict["merge"]);
   }
 
   quickSort() {
     if (this.state.buttonClicked !== 0) return;
-    const animations = getQuickSortAnimations(this.state.array);
+    const animations = getQuickSortAnimations([...this.state.array]);
     this.processAlgorithm(animations, dict["quick"]);
   }
 
   bubbleSort() {
     // console.log("Inside Bubble Sort");
     if (this.state.buttonClicked !== 0) return;
-    const animations = getBubbleSortAnimations(this.state.array);
+    const animations = getBubbleSortAnimations([...this.state.array]);
     this.processAlgorithm(animations, dict["bubble"]);
   }
 
   insertionSort() {
     // console.log("Inside Insertion Sort");
     if (this.state.buttonClicked !== 0) return;
-    const animations = getInsertionSortAnimations(this.state.array);
+    const animations = getInsertionSortAnimations([...this.state.array]);
     this.processAlgorithm(animations, dict["insertion"]);
   }
 
   selectionSort() {
     if (this.state.buttonClicked !== 0) return;
-    const animations = getSelectionSortAnimations(this.state.array);
+    const animations = getSelectionSortAnimations([...this.state.array]);
     this.processAlgorithm(animations, dict["selection"]);
   }
 
