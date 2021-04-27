@@ -150,7 +150,7 @@ export default class SortingVisualizer extends React.Component {
                   this.state.buttonClicked === 0 ||
                   this.state.buttonClicked === dict["generate"]
                     ? 1
-                    : 0.5,
+                    : 0.2,
                 color: "black",
               }}
               className="form-control btn btn-link col-md-1"
@@ -165,7 +165,7 @@ export default class SortingVisualizer extends React.Component {
                   this.state.buttonClicked === 0 ||
                   this.state.buttonClicked === dict["merge"]
                     ? 1
-                    : 0.5,
+                    : 0.2,
                 color: "black",
               }}
               className="form-control btn btn-link  col-md-1"
@@ -180,7 +180,7 @@ export default class SortingVisualizer extends React.Component {
                   this.state.buttonClicked === 0 ||
                   this.state.buttonClicked === dict["quick"]
                     ? 1
-                    : 0.5,
+                    : 0.2,
                 color: "black",
               }}
               className="form-control btn btn-link  col-md-1"
@@ -195,7 +195,7 @@ export default class SortingVisualizer extends React.Component {
                   this.state.buttonClicked === 0 ||
                   this.state.buttonClicked === dict["bubble"]
                     ? 1
-                    : 0.5,
+                    : 0.2,
                 color: "black",
               }}
               className="form-control btn btn-link  col-md-1"
@@ -210,7 +210,7 @@ export default class SortingVisualizer extends React.Component {
                   this.state.buttonClicked === 0 ||
                   this.state.buttonClicked === dict["insertion"]
                     ? 1
-                    : 0.5,
+                    : 0.2,
                 color: "black",
               }}
               className="form-control btn btn-link  col-md-1"
@@ -225,7 +225,7 @@ export default class SortingVisualizer extends React.Component {
                   this.state.buttonClicked === 0 ||
                   this.state.buttonClicked === dict["selection"]
                     ? 1
-                    : 0.5,
+                    : 0.2,
                 color: "black",
               }}
               className="form-control btn btn-link  col-md-1"
