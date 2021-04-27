@@ -26,6 +26,8 @@ var dict = {
   reset: 7,
 };
 
+let counter = 0;
+
 export default class SortingVisualizer extends React.Component {
   constructor(props) {
     super(props);
@@ -81,7 +83,9 @@ export default class SortingVisualizer extends React.Component {
     for (let i = 0; i < this.state.bars; i++) {
       arr.push(randomIntFromInterval(5, this.state.maxHeight));
     }
+    console.log(arr);
     this.setState({ array: arr });
+    console.log("Inside reset array ", this.state.array);
     this.setState({ buttonClicked: 0 });
   }
 
@@ -162,12 +166,40 @@ export default class SortingVisualizer extends React.Component {
   }
 
   bruteReset() {
-    window.location.reload();
+    console.log("Reset button clicked");
+    var id = window.setTimeout(function () {}, 0);
+
+    while (id--) {
+      window.clearTimeout(id);
+    }
+
+    this.setState({
+      array: [],
+      buttonClicked: 0,
+      bars: (window.innerWidth - 20) / 5,
+      maxHeight: window.innerHeight - 100,
+    });
+
+    console.log(
+      "Deleted",
+      this.state.bars,
+      this.state.maxHeight,
+      this.state.buttonClicked,
+      this.state.array
+    );
+
+    setTimeout(() => {
+      counter++;
+      if (counter % 2 === 1) {
+        this.bruteReset();
+      }
+    });
+    this.resetArray();
+    console.log(this.state.array);
+    // window.location.reload();
   }
 
   render() {
-    const { array } = this.state;
-
     return (
       <div>
         <div className="up buttons">
@@ -284,7 +316,7 @@ export default class SortingVisualizer extends React.Component {
           </div>
         </div>
         <div className="array-container">
-          {array.map((value, idx) => (
+          {this.state.array.map((value, idx) => (
             <div
               className="array-bar"
               key={idx}
