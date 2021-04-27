@@ -1,4 +1,6 @@
 import React from "react";
+import "./SortingVisualizer.css";
+
 function Footer() {
   const year = new Date().getFullYear();
   return (
@@ -6,10 +8,10 @@ function Footer() {
       <p
         style={{
           position: "fixed",
-          bottom: "10px",
+          bottom: "0px",
+          left: "0px",
+          textAlign: "center",
           width: "100%",
-          height: "0.10rem",
-          display: "relative",
         }}
       >
         {" "}

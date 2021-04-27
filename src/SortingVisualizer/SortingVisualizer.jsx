@@ -10,9 +10,6 @@ import Footer from "./Footer.jsx";
 // Change this value for the speed of the animations.
 var ANIMATION_SPEED_MS = 10;
 
-// Change this value for the number of bars (value) in the array.
-const NUMBER_OF_ARRAY_BARS = 310;
-
 // This is the main color of the array bars.
 const PRIMARY_COLOR = "turquoise";
 
@@ -36,22 +33,45 @@ export default class SortingVisualizer extends React.Component {
     this.state = {
       array: [],
       buttonClicked: 0,
+      bars: 300,
+      maxHeight: 730,
     };
 
     // this.timer = this.timer.bind(this);
   }
 
+  updateDimensions() {
+    console.log("Updated");
+
+    this.setState({
+      bars: (window.innerWidth - 20) / 5,
+      maxHeight: window.innerHeight - 20,
+    });
+    console.log("Window Width", window.innerWidth);
+    console.log("Window Height", window.innerHeight);
+    console.log("Bars", this.state.bars);
+    console.log("Bar Height", this.state.maxHeight);
+    if (this.state.buttonClicked !== 0) this.bruteReset();
+  }
+
   componentDidMount() {
+    this.updateDimensions();
+    window.addEventListener("resize", this.updateDimensions.bind(this));
+    console.log("Resetting Array");
     this.resetArray();
     this.setState({ buttonClicked: 0 });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions.bind(this));
   }
 
   resetArray() {
     if (this.state.buttonClicked !== 0) return;
     this.setState({ buttonClicked: 1 });
     const arr = [];
-    for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
-      arr.push(randomIntFromInterval(5, 730));
+    for (let i = 0; i < this.state.bars; i++) {
+      arr.push(randomIntFromInterval(5, this.state.maxHeight));
     }
     this.setState({ array: arr });
     this.setState({ buttonClicked: 0 });
