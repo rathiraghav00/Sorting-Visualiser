@@ -24,6 +24,7 @@ export default class SortingVisualizer extends React.Component {
 
     this.state = {
       array: [],
+      buttonClicked: false,
     };
   }
 
@@ -106,7 +107,7 @@ export default class SortingVisualizer extends React.Component {
             <button
               type="submit"
               style={{
-                align: "right",
+                color: "black",
               }}
               className="form-control btn btn-link col-md-1"
               onClick={() => this.resetArray()}
@@ -115,6 +116,9 @@ export default class SortingVisualizer extends React.Component {
             </button>
             <button
               type="submit"
+              style={{
+                color: "black",
+              }}
               className="form-control btn btn-link  col-md-1"
               onClick={() => this.mergeSort()}
             >
@@ -122,6 +126,9 @@ export default class SortingVisualizer extends React.Component {
             </button>
             <button
               type="submit"
+              style={{
+                color: "black",
+              }}
               className="form-control btn btn-link  col-md-1"
               onClick={() => this.quickSort()}
             >
@@ -129,6 +136,9 @@ export default class SortingVisualizer extends React.Component {
             </button>
             <button
               type="submit"
+              style={{
+                color: "black",
+              }}
               className="form-control btn btn-link  col-md-1"
               onClick={() => this.bubbleSort()}
             >
@@ -136,6 +146,9 @@ export default class SortingVisualizer extends React.Component {
             </button>
             <button
               type="submit"
+              style={{
+                color: "black",
+              }}
               className="form-control btn btn-link  col-md-1"
               onClick={() => this.insertionSort()}
             >
@@ -143,6 +156,9 @@ export default class SortingVisualizer extends React.Component {
             </button>
             <button
               type="submit"
+              style={{
+                color: "black",
+              }}
               className="form-control btn btn-link  col-md-1"
               onClick={() => this.selectionSort()}
             >
