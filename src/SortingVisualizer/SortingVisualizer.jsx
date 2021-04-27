@@ -5,6 +5,7 @@ import { getInsertionSortAnimations } from "../sortingAlgorithms/insertionSortAl
 import { getQuickSortAnimations } from "../sortingAlgorithms/quickSortAlgorithm.js";
 import { getSelectionSortAnimations } from "../sortingAlgorithms/selectionSortAlgorithm.js";
 import "./SortingVisualizer.css";
+import Footer from "./Footer.jsx";
 
 // Change this value for the speed of the animations.
 var ANIMATION_SPEED_MS = 10;
@@ -257,6 +258,7 @@ export default class SortingVisualizer extends React.Component {
             ></div>
           ))}
         </div>
+        <Footer />
       </div>
     );
   }
