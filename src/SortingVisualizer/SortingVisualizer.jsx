@@ -142,11 +142,13 @@ export default class SortingVisualizer extends React.Component {
 
     return (
       <div>
-        <div className="up">
-          <div class="col-sm-12 text-center">
+        <div className="up buttons">
+          <div className="text-center">
             <button
               type="submit"
+              className="form-control btn btn-link col-sm-1"
               style={{
+                minWidth: "18ch",
                 opacity:
                   this.state.buttonClicked === 0 ||
                   this.state.buttonClicked === dict["generate"]
@@ -154,14 +156,15 @@ export default class SortingVisualizer extends React.Component {
                     : 0.2,
                 color: "black",
               }}
-              className="form-control btn btn-link col-md-1"
               onClick={() => this.resetArray()}
             >
               Generate New Array
             </button>
             <button
               type="submit"
+              className="form-control btn btn-link col-sm-1"
               style={{
+                minWidth: "18ch",
                 opacity:
                   this.state.buttonClicked === 0 ||
                   this.state.buttonClicked === dict["merge"]
@@ -169,14 +172,16 @@ export default class SortingVisualizer extends React.Component {
                     : 0.2,
                 color: "black",
               }}
-              className="form-control btn btn-link  col-md-1"
               onClick={() => this.mergeSort()}
             >
               Merge Sort
             </button>
             <button
               type="submit"
+              className="form-control btn btn-link col-sm-1"
               style={{
+                minWidth: "18ch",
+                fontSize: "15px",
                 opacity:
                   this.state.buttonClicked === 0 ||
                   this.state.buttonClicked === dict["quick"]
@@ -184,14 +189,15 @@ export default class SortingVisualizer extends React.Component {
                     : 0.2,
                 color: "black",
               }}
-              className="form-control btn btn-link  col-md-1"
               onClick={() => this.quickSort()}
             >
               Quick Sort
             </button>
             <button
               type="submit"
+              className="form-control btn btn-link col-sm-1"
               style={{
+                minWidth: "18ch",
                 opacity:
                   this.state.buttonClicked === 0 ||
                   this.state.buttonClicked === dict["bubble"]
@@ -199,14 +205,16 @@ export default class SortingVisualizer extends React.Component {
                     : 0.2,
                 color: "black",
               }}
-              className="form-control btn btn-link  col-md-1"
               onClick={() => this.bubbleSort()}
             >
               Bubble Sort
             </button>
             <button
               type="submit"
+              className="form-control btn btn-link col-sm-1"
               style={{
+                minWidth: "18ch",
+
                 opacity:
                   this.state.buttonClicked === 0 ||
                   this.state.buttonClicked === dict["insertion"]
@@ -214,14 +222,15 @@ export default class SortingVisualizer extends React.Component {
                     : 0.2,
                 color: "black",
               }}
-              className="form-control btn btn-link  col-md-1"
               onClick={() => this.insertionSort()}
             >
               Insertion Sort
             </button>
             <button
               type="submit"
+              className="form-control btn btn-link col-sm-1"
               style={{
+                minWidth: "18ch",
                 opacity:
                   this.state.buttonClicked === 0 ||
                   this.state.buttonClicked === dict["selection"]
@@ -229,17 +238,17 @@ export default class SortingVisualizer extends React.Component {
                     : 0.2,
                 color: "black",
               }}
-              className="form-control btn btn-link  col-md-1"
               onClick={() => this.selectionSort()}
             >
               Selection Sort
             </button>
             <button
               type="submit"
+              className="form-control btn btn-link col-sm-1"
               style={{
+                minWidth: "18ch",
                 color: "red",
               }}
-              className="form-control btn btn-link  col-md-1"
               onClick={() => this.bruteReset()}
             >
               Reset
@@ -258,7 +267,7 @@ export default class SortingVisualizer extends React.Component {
             ></div>
           ))}
         </div>
-        <Footer />
+        <Footer className="container" />
       </div>
     );
   }

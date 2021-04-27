@@ -18,3 +18,12 @@
   top: 50px; /*I want this one 200px from the top of .wrapper*/
   align-content: center;
 }
+
+.buttons {
+  /* display: inline-block; */
+  font-size: 2;
+  width: fit-content;
+  height: auto;
+  display: inline-block;
+  text-align: center;
+}
