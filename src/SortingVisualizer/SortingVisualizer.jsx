@@ -33,8 +33,8 @@ export default class SortingVisualizer extends React.Component {
     this.state = {
       array: [],
       buttonClicked: 0,
-      bars: 300,
-      maxHeight: 730,
+      bars: (window.innerWidth - 20) / 5,
+      maxHeight: window.innerHeight - 20,
     };
 
     // this.timer = this.timer.bind(this);
@@ -47,8 +47,10 @@ export default class SortingVisualizer extends React.Component {
       bars: (window.innerWidth - 20) / 5,
       maxHeight: window.innerHeight - 20,
     });
+
     console.log("Window Width", window.innerWidth);
     console.log("Window Height", window.innerHeight);
+
     console.log("Bars", this.state.bars);
     console.log("Bar Height", this.state.maxHeight);
     if (this.state.buttonClicked !== 0) {
@@ -59,9 +61,11 @@ export default class SortingVisualizer extends React.Component {
   }
 
   componentDidMount() {
-    this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions.bind(this));
+    this.updateDimensions();
     console.log("Resetting Array");
+    console.log("Bars", this.state.bars);
+    console.log("Bar Height", this.state.maxHeight);
     this.resetArray();
     this.setState({ buttonClicked: 0 });
   }
