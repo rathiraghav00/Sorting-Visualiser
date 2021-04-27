@@ -51,7 +51,11 @@ export default class SortingVisualizer extends React.Component {
     console.log("Window Height", window.innerHeight);
     console.log("Bars", this.state.bars);
     console.log("Bar Height", this.state.maxHeight);
-    if (this.state.buttonClicked !== 0) this.bruteReset();
+    if (this.state.buttonClicked !== 0) {
+      this.bruteReset();
+    } else {
+      this.resetArray();
+    }
   }
 
   componentDidMount() {
