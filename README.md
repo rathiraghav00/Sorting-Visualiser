@@ -1,4 +1,4 @@
-Sorting Visualiser : Responsive website to visualise sorting algorithms 
+# Sorting Visualiser : Responsive website to visualise sorting algorithms 
 
 ![alt text](./screenshot/1.png)
 
