@@ -37,7 +37,6 @@ export default class SortingVisualizer extends React.Component {
       array.push(randomIntFromInterval(5, 730));
     }
     this.setState({ array });
-    console.log("Size of array", NUMBER_OF_ARRAY_BARS);
   }
 
   processAlgorithm(animations) {
@@ -47,7 +46,6 @@ export default class SortingVisualizer extends React.Component {
       const isColorChange = Boolean(animations[i].length === 2);
       if (isColorChange) {
         cnt++;
-        console.log("2 wali condiition");
         const [barOneIdx, barTwoIdx] = animations[i];
         const barOneStyle = arrayBars[barOneIdx].style;
         const barTwoStyle = arrayBars[barTwoIdx].style;
@@ -61,7 +59,6 @@ export default class SortingVisualizer extends React.Component {
           const [barOneIdx, newHeightOne, barTwoIdx, newHeightTwo] = animations[
             i
           ];
-          console.log("4 wali condiition");
           const barOneStyle = arrayBars[barOneIdx].style;
           barOneStyle.height = `${newHeightOne}px`;
           const barTwoStyle = arrayBars[barTwoIdx].style;
@@ -71,31 +68,30 @@ export default class SortingVisualizer extends React.Component {
     }
   }
   mergeSort() {
-    console.log("Inside Merge Sort");
+    // console.log("Inside Merge Sort");
     const animations = getMergeSortAnimations(this.state.array);
     this.processAlgorithm(animations);
   }
 
   quickSort() {
-    console.log("Inside Quick Sort");
+    // console.log("Inside Quick Sort");
     const animations = getQuickSortAnimations(this.state.array);
     this.processAlgorithm(animations);
   }
 
   bubbleSort() {
-    console.log("Inside Bubble Sort");
+    // console.log("Inside Bubble Sort");
     const animations = getBubbleSortAnimations(this.state.array);
     this.processAlgorithm(animations);
   }
 
   insertionSort() {
-    console.log("Inside Insertion Sort");
+    // console.log("Inside Insertion Sort");
     const animations = getInsertionSortAnimations(this.state.array);
     this.processAlgorithm(animations);
   }
 
   selectionSort() {
-    console.log("Inside Selection Sort");
     const animations = getSelectionSortAnimations(this.state.array);
     this.processAlgorithm(animations);
   }
@@ -104,23 +100,68 @@ export default class SortingVisualizer extends React.Component {
     const { array } = this.state;
 
     return (
-      <div className="array-container">
-        {array.map((value, idx) => (
-          <div
-            className="array-bar"
-            key={idx}
-            style={{
-              backgroundColor: PRIMARY_COLOR,
-              height: `${value}px`,
-            }}
-          ></div>
-        ))}
-        <button onClick={() => this.resetArray()}>Generate New Array</button>
-        <button onClick={() => this.mergeSort()}>Merge Sort</button>
-        <button onClick={() => this.quickSort()}>Quick Sort</button>
-        <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
-        <button onClick={() => this.insertionSort()}>Insertion Sort</button>
-        <button onClick={() => this.selectionSort()}>Selection Sort</button>
+      <div>
+        <div className="up">
+          <div class="col-sm-12 text-center">
+            <button
+              type="submit"
+              style={{
+                align: "right",
+              }}
+              className="form-control btn btn-link col-md-1"
+              onClick={() => this.resetArray()}
+            >
+              Generate New Array
+            </button>
+            <button
+              type="submit"
+              className="form-control btn btn-link  col-md-1"
+              onClick={() => this.mergeSort()}
+            >
+              Merge Sort
+            </button>
+            <button
+              type="submit"
+              className="form-control btn btn-link  col-md-1"
+              onClick={() => this.quickSort()}
+            >
+              Quick Sort
+            </button>
+            <button
+              type="submit"
+              className="form-control btn btn-link  col-md-1"
+              onClick={() => this.bubbleSort()}
+            >
+              Bubble Sort
+            </button>
+            <button
+              type="submit"
+              className="form-control btn btn-link  col-md-1"
+              onClick={() => this.insertionSort()}
+            >
+              Insertion Sort
+            </button>
+            <button
+              type="submit"
+              className="form-control btn btn-link  col-md-1"
+              onClick={() => this.selectionSort()}
+            >
+              Selection Sort
+            </button>
+          </div>
+        </div>
+        <div className="array-container down">
+          {array.map((value, idx) => (
+            <div
+              className="array-bar"
+              key={idx}
+              style={{
+                backgroundColor: PRIMARY_COLOR,
+                height: `${value}px`,
+              }}
+            ></div>
+          ))}
+        </div>
       </div>
     );
   }
