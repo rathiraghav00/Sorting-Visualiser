@@ -184,6 +184,16 @@ export default class SortingVisualizer extends React.Component {
             >
               Selection Sort
             </button>
+            <button
+              type="submit"
+              style={{
+                color: "red",
+              }}
+              className="form-control btn btn-link  col-md-1"
+              onClick={() => window.location.reload()}
+            >
+              Reset
+            </button>
           </div>
         </div>
         <div className="array-container down">
