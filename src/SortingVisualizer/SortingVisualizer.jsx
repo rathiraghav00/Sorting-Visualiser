@@ -7,7 +7,7 @@ import { getSelectionSortAnimations } from "../sortingAlgorithms/selectionSortAl
 import "./SortingVisualizer.css";
 
 // Change this value for the speed of the animations.
-const ANIMATION_SPEED_MS = 1;
+var ANIMATION_SPEED_MS = 10;
 
 // Change this value for the number of bars (value) in the array.
 const NUMBER_OF_ARRAY_BARS = 310;
@@ -57,6 +57,8 @@ export default class SortingVisualizer extends React.Component {
   }
 
   processAlgorithm(animations, id) {
+    ANIMATION_SPEED_MS = 15000 / (animations.length + 1);
+
     this.setState({ buttonClicked: id });
     console.log("SET TO TRUE");
     var tim = 0;
