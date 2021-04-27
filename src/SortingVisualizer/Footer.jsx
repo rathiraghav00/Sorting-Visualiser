@@ -4,12 +4,13 @@ import "./SortingVisualizer.css";
 function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer>
+    <div>
       <p
         style={{
-          position: "fixed",
+          position: "absolute",
           bottom: "0px",
           left: "0px",
+          right: "0px",
           textAlign: "center",
           width: "100%",
         }}
@@ -21,7 +22,7 @@ function Footer() {
           Please leave a feedback
         </a>
       </p>
-    </footer>
+    </div>
   );
 }
 

@@ -34,7 +34,7 @@ export default class SortingVisualizer extends React.Component {
       array: [],
       buttonClicked: 0,
       bars: (window.innerWidth - 20) / 5,
-      maxHeight: window.innerHeight - 20,
+      maxHeight: window.innerHeight - 100,
     };
 
     // this.timer = this.timer.bind(this);
@@ -45,7 +45,7 @@ export default class SortingVisualizer extends React.Component {
 
     this.setState({
       bars: (window.innerWidth - 20) / 5,
-      maxHeight: window.innerHeight - 20,
+      maxHeight: window.innerHeight - 100,
     });
 
     console.log("Window Width", window.innerWidth);
@@ -283,7 +283,7 @@ export default class SortingVisualizer extends React.Component {
             </button>
           </div>
         </div>
-        <div className="array-container down">
+        <div className="array-container">
           {array.map((value, idx) => (
             <div
               className="array-bar"
