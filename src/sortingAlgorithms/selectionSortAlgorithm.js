@@ -1,77 +1,46 @@
-export function getMergeSortAnimations(array) {
+// void selectionSort(int arr[], int n)
+// {
+//     int i, j, min_idx;
+
+//     // One by one move boundary of unsorted subarray
+//     for (i = 0; i < n-1; i++)
+//     {
+//         // Find the minimum element in unsorted array
+//         min_idx = i;
+//         for (j = i+1; j < n; j++)
+//         if (arr[j] < arr[min_idx])
+//             min_idx = j;
+
+//         // Swap the found minimum element with the first element
+//         swap(&arr[min_idx], &arr[i]);
+//     }
+// }
+
+export function getSelectionSortAnimations(array) {
   const animations = [];
-  if (array.length <= 1) return array;
-  const auxiliaryArray = array.slice();
-  mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
+  if (array.length <= 1) return animations;
+  selectionSortHelper(array, animations);
   return animations;
 }
 
-function mergeSortHelper(
-  mainArray,
-  startIdx,
-  endIdx,
-  auxiliaryArray,
-  animations
-) {
-  if (startIdx === endIdx) return;
-  const middleIdx = Math.floor((startIdx + endIdx) / 2);
-  mergeSortHelper(auxiliaryArray, startIdx, middleIdx, mainArray, animations);
-  mergeSortHelper(auxiliaryArray, middleIdx + 1, endIdx, mainArray, animations);
-  doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations);
-}
-
-function doMerge(
-  mainArray,
-  startIdx,
-  middleIdx,
-  endIdx,
-  auxiliaryArray,
-  animations
-) {
-  let k = startIdx;
-  let i = startIdx;
-  let j = middleIdx + 1;
-  while (i <= middleIdx && j <= endIdx) {
-    // These are the values that we're comparing; we push them once
-    // to change their color.
-    animations.push([i, j]);
-    // These are the values that we're comparing; we push them a second
-    // time to revert their color.
-    animations.push([i, j]);
-    if (auxiliaryArray[i] <= auxiliaryArray[j]) {
-      // We overwrite the value at index k in the original array with the
-      // value at index i in the auxiliary array.
-      animations.push([k, auxiliaryArray[i]]);
-      mainArray[k++] = auxiliaryArray[i++];
-    } else {
-      // We overwrite the value at index k in the original array with the
-      // value at index j in the auxiliary array.
-      animations.push([k, auxiliaryArray[j]]);
-      mainArray[k++] = auxiliaryArray[j++];
+function selectionSortHelper(arr, animations) {
+  var i, j, min_idx;
+  var n = arr.length;
+  // One by one move boundary of unsorted subarray
+  for (i = 0; i < n - 1; i++) {
+    // Find the minimum element in unsorted array
+    min_idx = i;
+    for (j = i + 1; j < n; j++) {
+      animations.push([j, min_idx]);
+      animations.push([j, min_idx]);
+      if (arr[j] < arr[min_idx]) min_idx = j;
     }
-  }
-  while (i <= middleIdx) {
-    // These are the values that we're comparing; we push them once
-    // to change their color.
-    animations.push([i, i]);
-    // These are the values that we're comparing; we push them a second
-    // time to revert their color.
-    animations.push([i, i]);
-    // We overwrite the value at index k in the original array with the
-    // value at index i in the auxiliary array.
-    animations.push([k, auxiliaryArray[i]]);
-    mainArray[k++] = auxiliaryArray[i++];
-  }
-  while (j <= endIdx) {
-    // These are the values that we're comparing; we push them once
-    // to change their color.
-    animations.push([j, j]);
-    // These are the values that we're comparing; we push them a second
-    // time to revert their color.
-    animations.push([j, j]);
-    // We overwrite the value at index k in the original array with the
-    // value at index j in the auxiliary array.
-    animations.push([k, auxiliaryArray[j]]);
-    mainArray[k++] = auxiliaryArray[j++];
+
+    animations.push([i, arr[min_idx], min_idx, arr[i]]);
+
+    // Swap the found minimum element with the first element
+    var temp = arr[i];
+    arr[i] = arr[min_idx];
+    arr[min_idx] = temp;
   }
 }

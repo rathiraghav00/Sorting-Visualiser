@@ -20,12 +20,12 @@
 
 export function getInsertionSortAnimations(array) {
   const animations = [];
-  if (array.length <= 1) return array;
-  bubbleSortHelper(array, animations);
+  if (array.length <= 1) return animations;
+  InsertionSortHelper(array, animations);
   return animations;
 }
 
-function bubbleSortHelper(arr, animations) {
+function InsertionSortHelper(arr, animations) {
   var i, key, j;
   var n = arr.length;
   for (i = 1; i < n; i++) {

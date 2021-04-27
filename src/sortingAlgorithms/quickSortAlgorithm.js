@@ -37,7 +37,7 @@
 
 export function getQuickSortAnimations(arr) {
   const animations = [];
-  if (arr.length <= 1) return arr;
+  if (arr.length <= 1) return animations;
   quickSortHelper(arr, 0, arr.length - 1, animations);
   return animations;
 }
