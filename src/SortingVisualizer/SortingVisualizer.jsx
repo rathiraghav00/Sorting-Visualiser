@@ -30,17 +30,21 @@ export default class SortingVisualizer extends React.Component {
 
   componentDidMount() {
     this.resetArray();
+    this.setState({ buttonClicked: false });
   }
 
   resetArray() {
-    const array = [];
+    const arr = [];
     for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
-      array.push(randomIntFromInterval(5, 730));
+      arr.push(randomIntFromInterval(5, 730));
     }
-    this.setState({ array });
+    this.setState({ array: arr });
   }
 
   processAlgorithm(animations) {
+    this.setState({ buttonClicked: true });
+    console.log("SET TO TRUE");
+    var tim = 0;
     var cnt = 0;
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.getElementsByClassName("array-bar");
@@ -51,11 +55,13 @@ export default class SortingVisualizer extends React.Component {
         const barOneStyle = arrayBars[barOneIdx].style;
         const barTwoStyle = arrayBars[barTwoIdx].style;
         const color = cnt % 2 === 1 ? SECONDARY_COLOR : PRIMARY_COLOR;
+        tim = i * ANIMATION_SPEED_MS;
         setTimeout(() => {
           barOneStyle.backgroundColor = color;
           barTwoStyle.backgroundColor = color;
         }, i * ANIMATION_SPEED_MS);
       } else {
+        tim = i * ANIMATION_SPEED_MS;
         setTimeout(() => {
           const [barOneIdx, newHeightOne, barTwoIdx, newHeightTwo] = animations[
             i
@@ -67,8 +73,16 @@ export default class SortingVisualizer extends React.Component {
         }, i * ANIMATION_SPEED_MS);
       }
     }
+
+    tim += 2000;
+    setTimeout(() => {
+      this.setState({ buttonClicked: false });
+      console.log("SET TO FALSE");
+    }, tim);
   }
+
   mergeSort() {
+    if (this.state.buttonClicked === true) return;
     // console.log("Inside Merge Sort");
     const animations = getMergeSortAnimations(this.state.array);
     this.processAlgorithm(animations);
@@ -76,23 +90,29 @@ export default class SortingVisualizer extends React.Component {
 
   quickSort() {
     // console.log("Inside Quick Sort");
+    console.log(this.state.buttonClicked, "Inside Quick Sort");
+    if (this.state.buttonClicked === true) return;
+    console.log(this.state.buttonClicked, "Running Quick Sort");
     const animations = getQuickSortAnimations(this.state.array);
     this.processAlgorithm(animations);
   }
 
   bubbleSort() {
     // console.log("Inside Bubble Sort");
+    if (this.state.buttonClicked === true) return;
     const animations = getBubbleSortAnimations(this.state.array);
     this.processAlgorithm(animations);
   }
 
   insertionSort() {
     // console.log("Inside Insertion Sort");
+    if (this.state.buttonClicked === true) return;
     const animations = getInsertionSortAnimations(this.state.array);
     this.processAlgorithm(animations);
   }
 
   selectionSort() {
+    if (this.state.buttonClicked === true) return;
     const animations = getSelectionSortAnimations(this.state.array);
     this.processAlgorithm(animations);
   }
