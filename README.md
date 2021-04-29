@@ -1,4 +1,4 @@
-# Sorting Visualiser : Responsive Website to Visualise Sorting Algorithms 
+# Sorting Visualiser : Responsive website to visualise sorting algorithms 
 https://still-taiga-99900.herokuapp.com
 
 ![alt text](./screenshot/1.png)
