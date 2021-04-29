@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-import React from "react";
+\import React from "react";
 import { getMergeSortAnimations } from "../sortingAlgorithms/mergeSortAlgorithm.js";
 import { getBubbleSortAnimations } from "../sortingAlgorithms/bubbleSortAlgorithm.js";
 import { getInsertionSortAnimations } from "../sortingAlgorithms/insertionSortAlgorithm.js";
@@ -10,7 +9,7 @@ import Footer from "./Footer.jsx";
 
 // Change this value for the speed of the animations.
 var ANIMATION_SPEED_MS = 10;
-=======
+
 import React from 'react';
 import {getMergeSortAnimations} from '../sortingAlgorithms/sortingAlgorithms.js';
 import './SortingVisualizer.css';
@@ -20,7 +19,7 @@ const ANIMATION_SPEED_MS = 1;
 
 // Change this value for the number of bars (value) in the array.
 const NUMBER_OF_ARRAY_BARS = 310;
->>>>>>> parent of 3bfd663 (Added more buttons and features)
+
 
 // This is the main color of the array bars.
 const PRIMARY_COLOR = 'turquoise';
