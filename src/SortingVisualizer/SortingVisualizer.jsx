@@ -174,37 +174,18 @@ export default class SortingVisualizer extends React.Component {
       window.clearTimeout(id);
     }
 
-    async function asyncCall() {
-      console.log("calling");
-      const result = await this.setState({
+    this.setState(
+      {
         array: [],
         buttonClicked: 0,
         bars: (window.innerWidth - 20) / 5,
         maxHeight: window.innerHeight - 100,
-      });
-      console.log("Process done");
-      // expected output: "resolved"
-    }
-
-    asyncCall();
-
-    console.log(
-      "Deleted",
-      this.state.bars,
-      this.state.maxHeight,
-      this.state.buttonClicked,
-      this.state.array
+      },
+      () => {
+        // IMP
+        this.resetArray();
+      }
     );
-
-    // setTimeout(() => {
-    //   counter++;
-    //   if (counter % 2 === 1) {
-    //     this.bruteReset();
-    //   }
-    // });
-    this.resetArray();
-    console.log(this.state.array);
-    // window.location.reload();
   }
 
   render() {
