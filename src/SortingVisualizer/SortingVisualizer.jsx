@@ -6,6 +6,7 @@ import { getQuickSortAnimations } from "../sortingAlgorithms/quickSortAlgorithm.
 import { getSelectionSortAnimations } from "../sortingAlgorithms/selectionSortAlgorithm.js";
 import "./SortingVisualizer.css";
 import Footer from "./Footer.jsx";
+import Header from "./Header.jsx";
 
 // Change this value for the speed of the animations.
 var ANIMATION_SPEED_MS = 10;
@@ -173,12 +174,19 @@ export default class SortingVisualizer extends React.Component {
       window.clearTimeout(id);
     }
 
-    this.setState({
-      array: [],
-      buttonClicked: 0,
-      bars: (window.innerWidth - 20) / 5,
-      maxHeight: window.innerHeight - 100,
-    });
+    async function asyncCall() {
+      console.log("calling");
+      const result = await this.setState({
+        array: [],
+        buttonClicked: 0,
+        bars: (window.innerWidth - 20) / 5,
+        maxHeight: window.innerHeight - 100,
+      });
+      console.log("Process done");
+      // expected output: "resolved"
+    }
+
+    asyncCall();
 
     console.log(
       "Deleted",
@@ -188,12 +196,12 @@ export default class SortingVisualizer extends React.Component {
       this.state.array
     );
 
-    setTimeout(() => {
-      counter++;
-      if (counter % 2 === 1) {
-        this.bruteReset();
-      }
-    });
+    // setTimeout(() => {
+    //   counter++;
+    //   if (counter % 2 === 1) {
+    //     this.bruteReset();
+    //   }
+    // });
     this.resetArray();
     console.log(this.state.array);
     // window.location.reload();
