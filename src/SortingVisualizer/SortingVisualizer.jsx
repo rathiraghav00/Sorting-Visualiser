@@ -1,11 +1,11 @@
 import React from "react";
-import { getMergeSortAnimations } from "../sortingAlgorithms/mergeSortAlgorithm.js";
-import { getBubbleSortAnimations } from "../sortingAlgorithms/bubbleSortAlgorithm.js";
-import { getInsertionSortAnimations } from "../sortingAlgorithms/insertionSortAlgorithm.js";
-import { getQuickSortAnimations } from "../sortingAlgorithms/quickSortAlgorithm.js";
-import { getSelectionSortAnimations } from "../sortingAlgorithms/selectionSortAlgorithm.js";
-import "./SortingVisualizer.css";
-import Footer from "./Footer.jsx";
+import { getMergeSortAnimations } from "../sortingAlgorithms/mergeSortAlgorithm";
+import { getBubbleSortAnimations } from "../sortingAlgorithms/bubbleSortAlgorithm";
+import { getInsertionSortAnimations } from "../sortingAlgorithms/insertionSortAlgorithm";
+import { getQuickSortAnimations } from "../sortingAlgorithms/quickSortAlgorithm";
+import { getSelectionSortAnimations } from "../sortingAlgorithms/selectionSortAlgorithm";
+import "./SortingVisualizer";
+import Footer from "./Footer";
 
 // Change this value for the speed of the animations.
 var ANIMATION_SPEED_MS = 10;
@@ -65,15 +65,15 @@ export default class SortingVisualizer extends React.Component {
 
   resetArray() {
     if (this.state.buttonClicked !== 0) return;
+
     this.setState({ buttonClicked: 1 });
+
     const arr = [];
     for (let i = 0; i < this.state.bars; i++) {
       arr.push(randomIntFromInterval(5, this.state.maxHeight));
     }
 
-    this.setState({ array: arr });
-
-    this.setState({ buttonClicked: 0 });
+    this.setState({ array: arr, buttonClicked: 0 });
   }
 
   processAlgorithm(animations, id) {
