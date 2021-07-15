@@ -6,7 +6,6 @@ import { getQuickSortAnimations } from "../sortingAlgorithms/quickSortAlgorithm.
 import { getSelectionSortAnimations } from "../sortingAlgorithms/selectionSortAlgorithm.js";
 import "./SortingVisualizer.css";
 import Footer from "./Footer.jsx";
-import Header from "./Header.jsx";
 
 // Change this value for the speed of the animations.
 var ANIMATION_SPEED_MS = 10;
@@ -26,8 +25,6 @@ var dict = {
   selection: 6,
   reset: 7,
 };
-
-let counter = 0;
 
 export default class SortingVisualizer extends React.Component {
   constructor(props) {
@@ -114,9 +111,8 @@ export default class SortingVisualizer extends React.Component {
       } else {
         tim = i * ANIMATION_SPEED_MS;
         setTimeout(() => {
-          const [barOneIdx, newHeightOne, barTwoIdx, newHeightTwo] = animations[
-            i
-          ];
+          const [barOneIdx, newHeightOne, barTwoIdx, newHeightTwo] =
+            animations[i];
           const barOneStyle = arrayBars[barOneIdx].style;
           barOneStyle.height = `${newHeightOne}px`;
           const barTwoStyle = arrayBars[barTwoIdx].style;
