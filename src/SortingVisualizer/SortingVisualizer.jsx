@@ -36,8 +36,6 @@ export default class SortingVisualizer extends React.Component {
       bars: (window.innerWidth - 20) / 5,
       maxHeight: window.innerHeight - 100,
     };
-
-    // this.timer = this.timer.bind(this);
   }
 
   updateDimensions() {
@@ -91,7 +89,6 @@ export default class SortingVisualizer extends React.Component {
     ANIMATION_SPEED_MS = 10000 / (animations.length + 1);
 
     this.setState({ buttonClicked: id });
-    console.log("SET TO TRUE");
     var tim = 0;
     var cnt = 0;
     for (let i = 0; i < animations.length; i++) {
@@ -120,13 +117,13 @@ export default class SortingVisualizer extends React.Component {
         }, i * ANIMATION_SPEED_MS);
       }
     }
+
     setTimeout(() => {
       var sorted_arr = [...this.state.array].sort(function (a, b) {
         return a - b;
       });
       this.setState({ array: sorted_arr });
       this.setState({ buttonClicked: 0 });
-      console.log("SET TO FALSE");
     }, tim);
   }
 
@@ -143,14 +140,12 @@ export default class SortingVisualizer extends React.Component {
   }
 
   bubbleSort() {
-    // console.log("Inside Bubble Sort");
     if (this.state.buttonClicked !== 0) return;
     const animations = getBubbleSortAnimations([...this.state.array]);
     this.processAlgorithm(animations, dict["bubble"]);
   }
 
   insertionSort() {
-    // console.log("Inside Insertion Sort");
     if (this.state.buttonClicked !== 0) return;
     const animations = getInsertionSortAnimations([...this.state.array]);
     this.processAlgorithm(animations, dict["insertion"]);
@@ -163,7 +158,6 @@ export default class SortingVisualizer extends React.Component {
   }
 
   bruteReset() {
-    console.log("Reset button clicked");
     var id = window.setTimeout(function () {}, 0);
 
     while (id--) {
@@ -318,8 +312,6 @@ export default class SortingVisualizer extends React.Component {
   }
 }
 
-// From https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
 function randomIntFromInterval(min, max) {
-  // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }

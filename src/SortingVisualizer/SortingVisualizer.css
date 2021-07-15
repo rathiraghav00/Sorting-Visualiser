@@ -11,10 +11,8 @@
 
 .up {
   position: relative;
-  top: 10px; /*I want this one 100px from the top of .wrapper*/
+  top: 10px;
   height: 20px;
-}
-.down {
 }
 
 .buttons {
