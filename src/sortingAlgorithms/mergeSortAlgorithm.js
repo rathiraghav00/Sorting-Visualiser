@@ -1,9 +1,9 @@
-export function getMergeSortAnimations(arr) {
+export function getMergeSortAnimations(array) {
   const animations = [];
-  let array = arr;
+
   if (array.length <= 1) return animations;
   const auxiliaryArray = array.slice();
-  mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
+  mergeSortHelper(auxiliaryArray, 0, array.length - 1, array, animations);
   return animations;
 }
 
@@ -44,14 +44,10 @@ function doMerge(
     }
   }
   while (i <= middleIdx) {
-    animations.push([i, i]);
-    animations.push([i, i]);
     animations.push([k, auxiliaryArray[i], k, auxiliaryArray[i]]);
     mainArray[k++] = auxiliaryArray[i++];
   }
   while (j <= endIdx) {
-    animations.push([j, j]);
-    animations.push([j, j]);
     animations.push([k, auxiliaryArray[j], k, auxiliaryArray[j]]);
     mainArray[k++] = auxiliaryArray[j++];
   }
